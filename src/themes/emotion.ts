@@ -6,7 +6,7 @@ const theme: Theme = {
     white: "#F2F2F2",
     lightGray: "#A6A6A6",
     darkGray: "#575759",
-    highlight: "#99F2D1",
+    highlight: "#96F2D7",
   },
   font: {
     size: {
@@ -22,6 +22,11 @@ const theme: Theme = {
       medium: 500,
       bold: 600,
     },
+  },
+  borderRad: {
+    min: "5px",
+    default: "10px",
+    max: "15px",
   },
 };
 

@@ -23,5 +23,10 @@ declare module "@emotion/react" {
         bold: number;
       };
     };
+    borderRad: {
+      min: string;
+      default: string;
+      max: string;
+    };
   }
 }

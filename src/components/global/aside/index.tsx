@@ -5,7 +5,7 @@ const GlobalAside = () => {
   return (
     <Aside>
       <img src={aside_img} alt="aside_image" className="bgImg" />
-      <AsideTopLayer></AsideTopLayer>
+      <AsideTopLayer />
     </Aside>
   );
 };

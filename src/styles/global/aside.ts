@@ -9,7 +9,7 @@ const Aside = styled.aside`
   align-items: center;
   position: relative;
   .bgImg {
-    width: 200%;
+    width: 210%;
   }
 `;
 

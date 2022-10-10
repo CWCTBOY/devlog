@@ -8,111 +8,134 @@ import code2 from "../../assets/dummy/code2.jpeg";
 import code3 from "../../assets/dummy/code3.jpeg";
 import code4 from "../../assets/dummy/code4.jpeg";
 
-export interface DummyDataProps {
+export interface ContentsProps {
   id: number;
   image: string;
   title: string;
   view: number;
   comment: number;
+  tags: (
+    | "Algorithm"
+    | "Web"
+    | "Database"
+    | "Network"
+    | "CS"
+    | "Python"
+    | "Java"
+    | "Spring"
+  )[];
 }
 
-const dummyData = [
+const dummyData: ContentsProps[] = [
   {
     id: 1,
     image: code1,
-    title: "title1",
+    title: "How MVC Pattern Works?",
     view: 100,
     comment: 123,
+    tags: ["Java", "Spring"],
   },
   {
     id: 2,
     image: code3,
-    title: "title2",
+    title: "Spring Container Beans Technology",
     view: 100,
     comment: 123,
+    tags: ["Java", "Spring"],
   },
   {
     id: 3,
     image: code2,
-    title: "title3",
+    title: "TCP/IP Protocol",
     view: 100,
     comment: 123,
+    tags: ["Network"],
   },
   {
     id: 4,
     image: code4,
-    title: "title4",
+    title: "UDP Protocol",
     view: 100,
     comment: 123,
+    tags: ["Network"],
   },
   {
     id: 5,
     image: code4,
-    title: "title1",
+    title: "How React Works?",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
   {
     id: 6,
     image: code2,
-    title: "title2",
+    title: "Destructuring in JavaScript",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
   {
     id: 7,
     image: code3,
-    title: "title3",
+    title: "CRA vs Next.js",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
   {
     id: 8,
     image: code1,
-    title: "title4",
+    title: "We don't need Redux, but needs Recoil",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
   {
     id: 9,
     image: code3,
-    title: "title1",
+    title: "My First Spring Project",
     view: 100,
     comment: 123,
+    tags: ["Java", "Spring"],
   },
   {
     id: 10,
     image: code2,
-    title: "title2",
+    title: "How JWT Authentication Transmits",
     view: 100,
     comment: 123,
+    tags: ["Web", "Java", "Spring", "Network"],
   },
   {
     id: 11,
     image: code1,
-    title: "title3",
+    title: "We understand how React Router works",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
   {
     id: 12,
     image: code4,
-    title: "title4",
+    title: "TypeScript vs JavaScript",
     view: 100,
     comment: 123,
+    tags: ["Web"],
   },
 ];
 
 const MasonryContainer = styled.div`
   column-count: 3;
   column-gap: 15px;
+  margin: 60px 0 0 0;
 `;
 
 const Masonry = () => {
   return (
     <MasonryContainer>
       {dummyData.map((content) => (
-        <GridContent content={content}></GridContent>
+        <GridContent key={content.id} content={content} />
       ))}
     </MasonryContainer>
   );
