@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { ContentsProps } from ".";
 import { transition } from "../../styles/global/animation";
+import { MdChatBubbleOutline, MdRemoveRedEye } from "react-icons/md";
 
 const Content = styled.div<{ isBottom: boolean }>`
   width: 100%;
@@ -33,13 +34,14 @@ const ContentLayer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+  justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.45);
   padding: 10px;
   .head {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     .title {
       display: inline-block;
       width: 100%;
@@ -56,16 +58,44 @@ const ContentLayer = styled.div`
       }
     }
   }
+  .foot {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .comment,
+    .view {
+      display: flex;
+      align-items: center;
+      color: ${({ theme }) => theme.color.white};
+      font-size: ${({ theme }) => theme.font.size.m};
+      font-weight: ${({ theme }) => theme.font.weight.bold};
+      margin: 0 0 0 5px;
+      .text {
+        margin: 0 0 0 5px;
+      }
+    }
+  }
 `;
 
 const GridContent = ({
   content: { image, title, view, comment, tags },
+  setIsClicked,
 }: {
   content: ContentsProps;
+  setIsClicked: (arg: boolean) => void;
 }) => {
+  const nav = useNavigate();
   const { isBottom }: { isBottom: boolean } = useOutletContext();
   return (
-    <Content isBottom={isBottom}>
+    <Content
+      isBottom={isBottom}
+      onClick={() => {
+        setIsClicked(true);
+        setTimeout(() => {
+          nav(`${title}`);
+        }, 200);
+      }}
+    >
       <Thumbnail src={image} />
       <ContentLayer>
         <div className="head">
@@ -76,6 +106,16 @@ const GridContent = ({
                 #{tag}
               </span>
             ))}
+          </div>
+        </div>
+        <div className="foot">
+          <div className="comment">
+            <MdChatBubbleOutline />
+            <span className="text">{comment}</span>
+          </div>
+          <div className="view">
+            <MdRemoveRedEye />
+            <span className="text">{view}</span>
           </div>
         </div>
       </ContentLayer>

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { transition } from "../../styles/global/animation";
+import { transition } from "../../../styles/global/animation";
 import { TagProps } from "./category";
 
-const TagBox = styled.span<{ selected: boolean }>`
+const TagBox = styled.li<{ selected: boolean }>`
   display: inline-block;
   font-weight: ${({ theme }) => theme.font.weight.bold};
   border: 1px solid

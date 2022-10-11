@@ -3,7 +3,7 @@ import { Theme } from "@emotion/react";
 const theme: Theme = {
   color: {
     black: "#000000",
-    white: "#F2F2F2",
+    white: "#FFFFFF",
     lightGray: "#A6A6A6",
     darkGray: "#575759",
     highlight: "#96F2D7",

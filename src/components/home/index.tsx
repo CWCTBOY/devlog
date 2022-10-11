@@ -7,6 +7,9 @@ import code1 from "../../assets/dummy/code1.png";
 import code2 from "../../assets/dummy/code2.jpeg";
 import code3 from "../../assets/dummy/code3.jpeg";
 import code4 from "../../assets/dummy/code4.jpeg";
+import { transition } from "../../styles/global/animation";
+import Category, { tag, TagProps } from "../global/category/category";
+import { useEffect, useState } from "react";
 
 export interface ContentsProps {
   id: number;
@@ -46,7 +49,7 @@ const dummyData: ContentsProps[] = [
   {
     id: 3,
     image: code2,
-    title: "TCP/IP Protocol",
+    title: "TCP Protocol",
     view: 100,
     comment: 123,
     tags: ["Network"],
@@ -125,19 +128,31 @@ const dummyData: ContentsProps[] = [
   },
 ];
 
-const MasonryContainer = styled.div`
+const MasonryContainer = styled.div<{ isClicked: boolean }>`
   column-count: 3;
   column-gap: 15px;
   margin: 60px 0 0 0;
+  transition: ${transition};
+  opacity: ${({ isClicked }) => (isClicked ? 0 : 1)};
 `;
 
 const Masonry = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [tags, setTags] = useState<TagProps[]>(tag);
+  const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
   return (
-    <MasonryContainer>
-      {dummyData.map((content) => (
-        <GridContent key={content.id} content={content} />
-      ))}
-    </MasonryContainer>
+    <>
+      <Category isClicked={isClicked} tags={tags} setTags={setTags} />
+      <MasonryContainer isClicked={isClicked}>
+        {dummyData.map((content) => (
+          <GridContent
+            key={content.id}
+            content={content}
+            setIsClicked={setIsClicked}
+          />
+        ))}
+      </MasonryContainer>
+    </>
   );
 };
 
