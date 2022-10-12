@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import aside_img from "../../../assets/aside_img.jpeg";
+import AsideFooter from "./footer";
 import AsideProfile from "./profile";
 
 const Aside = styled.aside`
@@ -23,6 +24,7 @@ const AsideTopLayer = styled.div`
   padding: 30px 15px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.15);
 `;
@@ -33,6 +35,7 @@ const GlobalAside = () => {
       <img src={aside_img} alt="aside_image" className="bgImg" />
       <AsideTopLayer>
         <AsideProfile />
+        <AsideFooter />
       </AsideTopLayer>
     </Aside>
   );

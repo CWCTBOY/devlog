@@ -21,7 +21,7 @@ const Loading = () => {
     to {
       transform: rotate(-360deg);
     }
-  `} 1s infinite;
+  `} 1s linear infinite;
     }
   `;
   return (

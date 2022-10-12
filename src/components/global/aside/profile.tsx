@@ -9,6 +9,7 @@ import { FaGitAlt } from "react-icons/fa";
 import { useState } from "react";
 import AdminSign from "./adminSign";
 import { tokenCheck } from "../../../certificate/temporalCertification";
+import { transition } from "../../../styles/global/animation";
 
 const AsideProfileContainer = styled.div`
   width: 100%;
@@ -63,6 +64,12 @@ const AsideProfileContainer = styled.div`
         font-size: ${({ theme }) => theme.font.size.m};
         color: ${({ theme }) => theme.color.lightGray};
         margin: 5px 0 0 0;
+        transition: ${transition};
+        &:first-of-type {
+          &:hover {
+            color: ${({ theme }) => theme.color.white};
+          }
+        }
         .text {
           margin-left: 5px;
         }
