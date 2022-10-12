@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { Editor as Template } from "@toast-ui/react-editor";
-import React, { createRef, RefObject, useEffect, useState } from "react";
+import React, { createRef, RefObject, useState } from "react";
 // import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 const EditorContainer = styled.div`
@@ -12,7 +12,9 @@ const EditorContainer = styled.div`
 
 const Editor = () => {
   const textRef: RefObject<any> = createRef();
-  const [descriptions, setDescriptions] = useState("# Write your post here");
+  const [descriptions, setDescriptions] = useState(
+    "# Literal here will be the Title of this article"
+  );
   const handleChangeInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     setDescriptions(textRef.current?.getInstance().getMarkdown());
     console.log(e.currentTarget);
@@ -24,9 +26,9 @@ const Editor = () => {
     <EditorContainer>
       <Template
         // ref={textRef}
-        previewStyle="vertical"
         height="100%"
         theme="dark"
+        hideModeSwitch={true}
         initialEditType="markdown"
         useCommandShortcut={true}
         autofocus={false}

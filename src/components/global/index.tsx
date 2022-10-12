@@ -21,7 +21,7 @@ const GlobalMain = styled.main`
   padding: 0 40px;
 `;
 
-const OutletContainer = styled.div<{ isBottom: boolean }>`
+const OutletContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 15px;
@@ -33,15 +33,24 @@ const OutletContainer = styled.div<{ isBottom: boolean }>`
   }
 `;
 
+export interface OutletContextProps {
+  isBottom: boolean;
+  widthPercentage: number;
+  isClicked: boolean;
+  smoothNavigate: (path: string) => void;
+}
+
 const GlobalContainer = () => {
+  const [isClicked, setIsClicked] = useState(false);
   const [isBottom, setIsBottom] = useState(false);
   const [widthPercentage, setWidthPercentage] = useState(0);
   const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight, offsetWidth } =
       e.currentTarget;
-    if (scrollTop === scrollHeight - clientHeight) {
-      setIsBottom(true);
-    } else {
+    scrollTop >= scrollHeight - clientHeight
+      ? setIsBottom(true)
+      : setIsBottom(false);
+    if (scrollTop === 0) {
       setIsBottom(false);
     }
     const perScroll =
@@ -52,12 +61,15 @@ const GlobalContainer = () => {
     <Container>
       <GlobalAside />
       <GlobalMain>
-        <GlobalHeader widthPercentage={widthPercentage} />
-        <OutletContainer onScroll={onScroll} isBottom={isBottom}>
-          <Outlet context={{ isBottom, widthPercentage }} />
+        <GlobalHeader widthPercentage={widthPercentage} isBottom={isBottom} />
+        <OutletContainer onScroll={onScroll}>
+          <Outlet
+            context={{ isBottom, widthPercentage, isClicked, setIsClicked }}
+          />
         </OutletContainer>
       </GlobalMain>
     </Container>
   );
 };
+
 export default GlobalContainer;

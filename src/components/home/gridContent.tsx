@@ -79,20 +79,23 @@ const ContentLayer = styled.div`
 
 const GridContent = ({
   content: { image, title, view, comment, tags },
-  setIsClicked,
 }: {
   content: ContentsProps;
-  setIsClicked: (arg: boolean) => void;
 }) => {
-  const nav = useNavigate();
-  const { isBottom }: { isBottom: boolean } = useOutletContext();
+  const {
+    isBottom,
+    setIsClicked,
+  }: { isBottom: boolean; setIsClicked: (isClicked: boolean) => void } =
+    useOutletContext();
+  const navigate = useNavigate();
   return (
     <Content
       isBottom={isBottom}
       onClick={() => {
         setIsClicked(true);
         setTimeout(() => {
-          nav(`${title}`);
+          setIsClicked(false);
+          navigate(title);
         }, 200);
       }}
     >

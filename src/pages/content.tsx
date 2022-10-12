@@ -1,5 +1,7 @@
+import Article from "../components/content";
+
 const Content = () => {
-  return null;
+  return <Article />;
 };
 
 export default Content;
