@@ -12,7 +12,6 @@ const MdTemplateContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 20px 0;
 `;
 
@@ -29,7 +28,6 @@ const Foot = styled.div`
     font-weight: ${({ theme }) => theme.font.weight.medium};
     border: none;
     border-radius: ${({ theme }) => theme.borderRad.min};
-
     cursor: pointer;
   }
   .cancel {

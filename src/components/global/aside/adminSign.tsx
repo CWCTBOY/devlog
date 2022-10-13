@@ -19,8 +19,9 @@ const AdminSignContainer = styled.div<{
   align-items: center;
   position: absolute;
   transition: ${transition};
-  top: ${({ admin }) => (admin ? "140px" : "80px")};
+  top: ${({ admin }) => (admin ? "137px" : "80px")};
   left: 0;
+  opacity: ${({ admin }) => (admin ? "1" : "0")};
   z-index: 0;
   .triangle,
   .btn {

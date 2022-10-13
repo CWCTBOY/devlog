@@ -95,7 +95,7 @@ const GridContent = ({
         setIsClicked(true);
         setTimeout(() => {
           setIsClicked(false);
-          navigate(`${id}_${title}`);
+          navigate(`article/${id}_${title}`);
         }, 200);
       }}
     >

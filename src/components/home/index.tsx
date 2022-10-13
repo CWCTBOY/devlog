@@ -146,7 +146,7 @@ const Title = styled.div<{ isClicked: boolean }>`
   font-size: ${({ theme }) => theme.font.size.xl};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.color.white};
-  margin: 30px 0 5px 0;
+  margin: 25px 0 5px 0;
   transition: ${transition};
   opacity: ${({ isClicked }) => (isClicked ? 0 : 1)};
 `;

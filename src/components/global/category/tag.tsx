@@ -10,7 +10,7 @@ const TagBox = styled.li<{ selected: boolean }>`
     ${({ theme, selected }) =>
       selected ? theme.color.highlight : theme.color.white};
   border-radius: ${({ theme }) => theme.borderRad.min};
-  margin: 0 5px 0 0;
+  margin: 0 5px 5px 0;
   padding: 5px 10px;
   transition: ${transition};
   color: ${({ theme, selected }) =>
