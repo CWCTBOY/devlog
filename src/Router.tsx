@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Certification from "./components/admin/certification";
+import Certification from "./components/admin/certificate";
 import Template from "./components/admin/template";
 import GlobalContainer from "./components/global";
 import Home from "./pages";
@@ -11,7 +11,7 @@ const Router = () => {
       <Routes>
         <Route element={<GlobalContainer />}>
           <Route path="/" element={<Home />} />
-          <Route path=":contentName" element={<Content />} />
+          <Route path=":contentInfo" element={<Content />} />
           <Route path="admin">
             <Route path="certification" element={<Certification />} />
             <Route path="new-post" element={<Template />} />

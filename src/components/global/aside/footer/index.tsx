@@ -8,7 +8,11 @@ const AsideFooterContainer = styled.div`
 const AsideFooter = () => {
   return (
     <AsideFooterContainer>
-      <MdOutlineSettings color="white" size={20} />
+      <MdOutlineSettings
+        color="white"
+        size={20}
+        style={{ cursor: "pointer" }}
+      />
     </AsideFooterContainer>
   );
 };

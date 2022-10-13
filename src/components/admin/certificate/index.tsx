@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import { SignIn } from "../../../certificate/temporalCertification";
 import Loading from "../../common/loading";
 import SignForm from "./form";
@@ -66,7 +66,7 @@ const Certification = () => {
       <CertificationContainer>
         {isAdmin && (
           <Certificated>
-            <MdOutlineAdminPanelSettings size={50} />
+            <MdVerified size={50} />
           </Certificated>
         )}
         {!isAdmin && !loading ? (

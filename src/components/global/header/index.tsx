@@ -83,7 +83,7 @@ const GlobalHeader = ({
   widthPercentage: number;
   isBottom: boolean;
 }) => {
-  const { contentName } = useParams();
+  const contentName = useParams().contentInfo?.split("_")[1];
   const pathname = useLocation().pathname.split("/")[2];
   return (
     <Header widthPercentage={widthPercentage} isBottom={isBottom}>

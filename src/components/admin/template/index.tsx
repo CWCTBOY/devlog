@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { tokenCheck } from "../../../certificate/temporalCertification";
+import Forbidden from "../../common/static/Forbidden";
 import { tag, TagProps } from "../../global/category/category";
 import Editor from "./editor";
 import Head from "./head";
@@ -42,14 +44,20 @@ const Template = () => {
   const [tags, setTags] = useState<TagProps[]>(tag);
   const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
   return (
-    <MdTemplateContainer>
-      <Head tags={tags} setTags={setTags} />
-      <Editor />
-      <Foot>
-        <button className="cancel">cancel</button>
-        <button className="post">post</button>
-      </Foot>
-    </MdTemplateContainer>
+    <>
+      {tokenCheck() ? (
+        <MdTemplateContainer>
+          <Head tags={tags} setTags={setTags} />
+          <Editor />
+          <Foot>
+            <button className="cancel">cancel</button>
+            <button className="post">post</button>
+          </Foot>
+        </MdTemplateContainer>
+      ) : (
+        <Forbidden />
+      )}
+    </>
   );
 };
 

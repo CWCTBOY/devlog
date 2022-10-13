@@ -11,6 +11,9 @@ const EditorContainer = styled.div`
 `;
 
 const Editor = () => {
+  /**
+   * @description toast-ui 버전문제와 인풋 텍스트 읽어오는 문제로 인해 잠시 대기
+   */
   const textRef: RefObject<any> = createRef();
   const [descriptions, setDescriptions] = useState(
     "# Literal here will be the Title of this article"
@@ -19,9 +22,6 @@ const Editor = () => {
     setDescriptions(textRef.current?.getInstance().getMarkdown());
     console.log(e.currentTarget);
   };
-  // useEffect(() => {
-  //   console.log(descriptions);
-  // });
   return (
     <EditorContainer>
       <Template

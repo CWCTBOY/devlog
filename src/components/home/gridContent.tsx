@@ -78,7 +78,7 @@ const ContentLayer = styled.div`
 `;
 
 const GridContent = ({
-  content: { image, title, view, comment, tags },
+  content: { id, image, title, view, comment, tags },
 }: {
   content: ContentsProps;
 }) => {
@@ -95,7 +95,7 @@ const GridContent = ({
         setIsClicked(true);
         setTimeout(() => {
           setIsClicked(false);
-          navigate(title);
+          navigate(`${id}_${title}`);
         }, 200);
       }}
     >

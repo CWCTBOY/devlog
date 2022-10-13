@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import aside_img from "../../../assets/aside_img.jpeg";
+import { tokenCheck } from "../../../certificate/temporalCertification";
 import AsideFooter from "./footer";
 import AsideProfile from "./profile";
 
@@ -35,7 +36,7 @@ const GlobalAside = () => {
       <img src={aside_img} alt="aside_image" className="bgImg" />
       <AsideTopLayer>
         <AsideProfile />
-        <AsideFooter />
+        {tokenCheck() && <AsideFooter />}
       </AsideTopLayer>
     </Aside>
   );

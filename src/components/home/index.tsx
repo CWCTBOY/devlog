@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import GridContent from "./gridContent";
+import { transition } from "../../styles/global/animation";
+import Category, { tag, TagProps } from "../global/category/category";
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 /*
 dummyImageProducer
 */
@@ -7,12 +11,6 @@ import code1 from "../../assets/dummy/code1.png";
 import code2 from "../../assets/dummy/code2.jpeg";
 import code3 from "../../assets/dummy/code3.jpeg";
 import code4 from "../../assets/dummy/code4.jpeg";
-import { MdModeEditOutline } from "react-icons/md";
-import { transition } from "../../styles/global/animation";
-import Category, { tag, TagProps } from "../global/category/category";
-import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { tokenCheck } from "../../certificate/temporalCertification";
 
 export interface ContentsProps {
   id: number;
@@ -36,7 +34,7 @@ const dummyData: ContentsProps[] = [
   {
     id: 1,
     image: code1,
-    title: "How MVC Pattern Works?",
+    title: "How MVC Pattern Designed?",
     view: 100,
     comment: 123,
     tags: ["Java", "Spring"],
@@ -135,25 +133,6 @@ const HeadConatiner = styled.div<{ isClicked: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  .adminPost {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-    height: 28px;
-    margin: 20px 0 0 0;
-    border: none;
-    border-radius: ${({ theme }) => theme.borderRad.min};
-    color: ${({ theme }) => theme.color.white};
-    background-color: ${({ theme }) => theme.color.lightGray};
-    cursor: pointer;
-    transition: ${transition};
-    opacity: ${({ isClicked }) => (isClicked ? 0 : 1)};
-    &:hover {
-      color: ${({ theme }) => theme.color.black};
-      background-color: ${({ theme }) => theme.color.highlight};
-    }
-  }
 `;
 
 const MasonryContainer = styled.div<{ isClicked: boolean }>`
@@ -175,30 +154,14 @@ const Title = styled.div<{ isClicked: boolean }>`
 const Masonry = () => {
   const {
     isClicked,
-    setIsClicked,
   }: { isClicked: boolean; setIsClicked: (isClicked: boolean) => void } =
     useOutletContext();
-  const navigate = useNavigate();
   const [tags, setTags] = useState<TagProps[]>(tag);
   const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
   return (
     <>
       <HeadConatiner isClicked={isClicked}>
         <Category isClicked={isClicked} tags={tags} setTags={setTags} />
-        {tokenCheck() && (
-          <button
-            className="adminPost"
-            onClick={() => {
-              setIsClicked(true);
-              setTimeout(() => {
-                setIsClicked(false);
-                navigate("admin/new-post");
-              }, 200);
-            }}
-          >
-            <MdModeEditOutline />
-          </button>
-        )}
       </HeadConatiner>
       <Title isClicked={isClicked}>Articles</Title>
       <MasonryContainer isClicked={isClicked}>

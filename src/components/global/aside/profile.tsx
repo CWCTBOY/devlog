@@ -1,10 +1,6 @@
 import styled from "@emotion/styled";
 import thumbnail from "../../../assets/aside_thumbnail.jpeg";
-import {
-  MdOutlineSchool,
-  MdMailOutline,
-  MdOutlineAdminPanelSettings,
-} from "react-icons/md";
+import { MdOutlineSchool, MdMailOutline, MdVerified } from "react-icons/md";
 import { FaGitAlt } from "react-icons/fa";
 import { useState } from "react";
 import AdminSign from "./adminSign";
@@ -44,12 +40,18 @@ const AsideProfileContainer = styled.div`
       .adminCheckBox {
         display: flex;
         align-items: center;
-      }
-      .name {
-        font-size: ${({ theme }) => theme.font.size.xxl};
-        font-weight: ${({ theme }) => theme.font.weight.bold};
-        color: ${({ theme }) => theme.color.white};
-        margin: 0 5px 5px 0;
+        position: relative;
+        .name {
+          font-size: ${({ theme }) => theme.font.size.xxl};
+          font-weight: ${({ theme }) => theme.font.weight.bold};
+          color: ${({ theme }) => theme.color.white};
+          margin: 0 5px 5px 0;
+        }
+        .isCertificated {
+          position: absolute;
+          top: 0.5px;
+          left: 135px;
+        }
       }
       .type {
         font-size: ${({ theme }) => theme.font.size.m};
@@ -65,7 +67,7 @@ const AsideProfileContainer = styled.div`
         color: ${({ theme }) => theme.color.lightGray};
         margin: 5px 0 0 0;
         transition: ${transition};
-        &:first-of-type {
+        &:nth-of-type(2) {
           &:hover {
             color: ${({ theme }) => theme.color.white};
           }
@@ -95,12 +97,18 @@ const AsideProfile = () => {
           <div className="adminCheckBox">
             <span className="name">Daniel Park</span>
             {tokenCheck() && (
-              <MdOutlineAdminPanelSettings size={24} color="#39F618" />
+              <span className="isCertificated">
+                <MdVerified size={24} color="#39F618" />
+              </span>
             )}
           </div>
           <span className="type">Back-end Developer</span>
         </div>
         <div className="etcBox">
+          <div className="etc">
+            <MdOutlineSchool />
+            <span className="text">SNUST</span>
+          </div>
           <div className="etc">
             <FaGitAlt />
             <span className="text">
@@ -112,10 +120,6 @@ const AsideProfile = () => {
                 cwctboy
               </a>
             </span>
-          </div>
-          <div className="etc">
-            <MdOutlineSchool />
-            <span className="text">SNU of sci & tech</span>
           </div>
           <div className="etc">
             <MdMailOutline />
