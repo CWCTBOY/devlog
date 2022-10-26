@@ -38,18 +38,34 @@ const Foot = styled.div`
   }
 `;
 
+export interface TemplateProps {
+  tags: string[] | null;
+  contents: string;
+  timestamp: number;
+}
+
 const Template = () => {
   const [tags, setTags] = useState<TagProps[]>(tag);
-  const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
+  const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag);
+  const [content, setContent] = useState("# Hello World!");
+  const post = async () => {
+    const request = {
+      tags: selectedTags,
+      content,
+      timestamp: +new Date(),
+    };
+  };
   return (
     <>
       {tokenCheck() ? (
         <MdTemplateContainer>
           <Head tags={tags} setTags={setTags} />
-          <Editor />
+          <Editor contents={content} setContent={setContent} />
           <Foot>
             <button className="cancel">cancel</button>
-            <button className="post">post</button>
+            <button className="post" onClick={post}>
+              post
+            </button>
           </Foot>
         </MdTemplateContainer>
       ) : (

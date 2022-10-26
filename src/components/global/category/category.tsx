@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { transition } from "../../../styles/global/animation";
 import Tag from "./tag";
