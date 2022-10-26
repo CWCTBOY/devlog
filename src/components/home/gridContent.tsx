@@ -16,9 +16,9 @@ const Content = styled.div<{ isBottom: boolean }>`
   margin: 0 0 15px 0;
   transition: ${transition};
   box-shadow: 22px 25px 17px -22px rgba(150, 242, 215, 0.3);
-  transform: ${({ isBottom }) => isBottom && `rotate(2deg)`};
+  transform: ${({ isBottom }) => isBottom && `rotate(1deg)`};
   &:hover {
-    transform: rotate(-2deg);
+    transform: rotate(-1deg);
     box-shadow: 22px 25px 17px -12px rgba(150, 242, 215, 0.4);
     transform-origin: bottom left;
   }

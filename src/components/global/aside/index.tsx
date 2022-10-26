@@ -15,7 +15,7 @@ const Aside = styled.aside`
   box-shadow: -3px 5px 19px 5px rgba(255, 255, 255, 0.3);
   background-color: ${({ theme }) => theme.color.black};
   .bgImg {
-    width: 350%;
+    width: 200%;
   }
 `;
 
@@ -27,7 +27,7 @@ const AsideTopLayer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const GlobalAside = () => {

@@ -3,7 +3,7 @@ import thumbnail from "../../../assets/aside_thumbnail.jpeg";
 import { MdOutlineSchool, MdMailOutline, MdVerified } from "react-icons/md";
 import { FaGitAlt } from "react-icons/fa";
 import { useState } from "react";
-import AdminSign from "./adminSign";
+import AdminSign from "./adminSignBtn";
 import { tokenCheck } from "../../../certificate/temporalCertification";
 import { transition } from "../../../styles/global/animation";
 
@@ -12,6 +12,19 @@ const AsideProfileContainer = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  .hidden {
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: inherit;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
   .thumbnail {
     width: 40%;
     aspect-ratio: 1/1;
@@ -24,7 +37,7 @@ const AsideProfileContainer = styled.div`
     cursor: pointer;
     z-index: 1;
     .profile {
-      width: 100%;
+      width: 150%;
     }
   }
   .description {
@@ -64,12 +77,12 @@ const AsideProfileContainer = styled.div`
       .etc {
         display: flex;
         font-size: ${({ theme }) => theme.font.size.m};
-        color: ${({ theme }) => theme.color.lightGray};
+        color: ${({ theme }) => theme.color.white};
         margin: 5px 0 0 0;
         transition: ${transition};
         &:nth-of-type(2) {
           &:hover {
-            color: ${({ theme }) => theme.color.white};
+            color: ${({ theme }) => theme.color.highlight};
           }
         }
         .text {
@@ -82,14 +95,23 @@ const AsideProfileContainer = styled.div`
 
 const AsideProfile = () => {
   const [admin, setAdmin] = useState(false);
+  const onFocus = () => {
+    setAdmin(true);
+  };
+  const onBlur = () => {
+    setTimeout(() => {
+      setAdmin(false);
+    }, 100);
+  };
   return (
     <AsideProfileContainer>
-      <div
-        className="thumbnail"
-        onClick={() => {
-          setAdmin((prev: boolean) => !prev);
-        }}
-      >
+      <div className="thumbnail">
+        <input
+          type="text"
+          className="hidden"
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
         <img src={thumbnail} alt="thumbnail" className="profile" />
       </div>
       <div className="description">

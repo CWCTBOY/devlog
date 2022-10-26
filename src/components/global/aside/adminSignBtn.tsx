@@ -6,7 +6,7 @@ import {
   tokenCheck,
 } from "../../../certificate/temporalCertification";
 import { transition } from "../../../styles/global/animation";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdOutlineAdminPanelSettings, MdLogout } from "react-icons/md";
 
 const AdminSignContainer = styled.div<{
   admin: boolean;
@@ -40,7 +40,7 @@ const AdminSignContainer = styled.div<{
     z-index: 0;
   }
   .btn {
-    width: 100%;
+    width: 60px;
     height: 35px;
     border: none;
     border-radius: ${({ theme }) => theme.borderRad.default};
@@ -81,7 +81,11 @@ const AdminSign = ({
               }
         }
       >
-        {tokenCheck() ? "Sign out" : <MdOutlineAdminPanelSettings size={20} />}
+        {tokenCheck() ? (
+          <MdLogout size={20} />
+        ) : (
+          <MdOutlineAdminPanelSettings size={20} />
+        )}
       </button>
     </AdminSignContainer>
   );
