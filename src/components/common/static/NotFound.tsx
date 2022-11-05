@@ -1,6 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { MdWarningAmber } from "react-icons/md";
+import Helmet from "../../global/helmet";
 
 const NotFoundContainer = styled.div`
   width: 100%;
@@ -26,10 +27,13 @@ const NotFoundContainer = styled.div`
 
 const NotFound = () => {
   return (
-    <NotFoundContainer>
-      <MdWarningAmber size={70} color="#1E71F5" />
-      <span className="text">404 NotFound</span>
-    </NotFoundContainer>
+    <>
+      <Helmet route="404" />
+      <NotFoundContainer>
+        <MdWarningAmber size={70} color="#1E71F5" />
+        <span className="text">404 NotFound</span>
+      </NotFoundContainer>
+    </>
   );
 };
 

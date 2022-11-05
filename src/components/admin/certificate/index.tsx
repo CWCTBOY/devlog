@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { MdVerified } from "react-icons/md";
 import { SignIn } from "../../../hooks/certificate/temporalCertification";
 import Loading from "../../common/loading";
+import Helmet from "../../global/helmet";
 import SignForm from "./form";
 
 const CertificationContainer = styled.div`
@@ -57,6 +58,7 @@ const Certification = () => {
   };
   return (
     <>
+      <Helmet route="Certification" />
       {loading && <Loading />}
       <CertificationContainer>
         {isAdmin && (

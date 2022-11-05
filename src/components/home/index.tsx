@@ -13,6 +13,7 @@ import code3 from "../../assets/dummy/code3.jpeg";
 import code4 from "../../assets/dummy/code4.jpeg";
 import { ContentsProps } from "../../interfaces/article";
 import { TagProps } from "../../interfaces/category";
+import Helmet from "../global/helmet";
 
 const dummyData: ContentsProps[] = [
   {
@@ -144,6 +145,7 @@ const Masonry = () => {
   const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
   return (
     <>
+      <Helmet route="Home" />
       <HeadConatiner isClicked={isClicked}>
         <Category isClicked={isClicked} tags={tags} setTags={setTags} />
       </HeadConatiner>

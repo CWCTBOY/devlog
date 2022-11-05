@@ -1,6 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { MdSignalCellularNoSim } from "react-icons/md";
+import Helmet from "../../global/helmet";
 
 const NotYetCreatedContainer = styled.div`
   width: 100%;
@@ -25,13 +26,16 @@ const NotYetCreatedContainer = styled.div`
 `;
 const NotYetCreated = () => {
   return (
-    <NotYetCreatedContainer>
-      <MdSignalCellularNoSim size={70} color="#F60062" />
-      <span className="text">
-        Not yet Created. <br /> This page will be show up after the SERVER
-        built.
-      </span>
-    </NotYetCreatedContainer>
+    <>
+      <Helmet route="Not Created" />
+      <NotYetCreatedContainer>
+        <MdSignalCellularNoSim size={70} color="#F60062" />
+        <span className="text">
+          Not yet Created. <br /> This page will be show up after the SERVER
+          built.
+        </span>
+      </NotYetCreatedContainer>
+    </>
   );
 };
 

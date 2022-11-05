@@ -1,6 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import Helmet from "../../global/helmet";
 
 const ForbiddenContainer = styled.div`
   width: 100%;
@@ -26,12 +27,15 @@ const ForbiddenContainer = styled.div`
 
 const Forbidden = () => {
   return (
-    <ForbiddenContainer>
-      <MdOutlineAdminPanelSettings size={70} color="#F60062" />
-      <span className="text">
-        Forbidden. <br /> You don't have permission to access.
-      </span>
-    </ForbiddenContainer>
+    <>
+      <Helmet route="Forbidden" />
+      <ForbiddenContainer>
+        <MdOutlineAdminPanelSettings size={70} color="#F60062" />
+        <span className="text">
+          Forbidden. <br /> You don't have permission to access.
+        </span>
+      </ForbiddenContainer>
+    </>
   );
 };
 

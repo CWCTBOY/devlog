@@ -7,6 +7,8 @@ import { tag } from "../../global/category/category";
 import Editor from "./editor";
 import Head from "./head";
 import { ArticleProps } from "../../../interfaces/article"; // * req schema
+import Helmet from "../../global/helmet";
+import { useLocation } from "react-router-dom";
 
 const MdTemplateContainer = styled.div`
   width: 100%;
@@ -44,6 +46,7 @@ const Template = () => {
   const [tags, setTags] = useState<TagProps[]>(tag);
   const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag);
   const [content, setContent] = useState("# Hello World!");
+  const loc = useLocation().pathname.split("/")[2];
   const post = async () => {
     const request = {
       tags: selectedTags,
@@ -53,6 +56,7 @@ const Template = () => {
   };
   return (
     <>
+      <Helmet route={loc === "new-post" ? "Post" : "Edit"} />
       {tokenCheck() ? (
         <MdTemplateContainer>
           <Head tags={tags} setTags={setTags} />

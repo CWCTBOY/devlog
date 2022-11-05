@@ -37,7 +37,7 @@ const AsideProfileContainer = styled.div`
     cursor: pointer;
     z-index: 1;
     .profile {
-      width: 150%;
+      width: 100%;
     }
   }
   .description {

@@ -15,11 +15,14 @@ const Content = styled.div<{ isBottom: boolean }>`
   overflow: hidden;
   margin: 0 0 15px 0;
   transition: ${transition};
-  box-shadow: 22px 25px 17px -22px rgba(150, 242, 215, 0.3);
+  box-shadow: ${({ isBottom }) =>
+    isBottom
+      ? "22px 25px 17px -12px rgba(148, 241, 214, 0.2)"
+      : " 22px 25px 17px -22px rgba(255, 255, 255, 0.3)"};
   transform: ${({ isBottom }) => isBottom && `rotate(1deg)`};
   &:hover {
-    transform: rotate(-1deg);
-    box-shadow: 22px 25px 17px -12px rgba(150, 242, 215, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 22px 25px 17px -12px rgba(255, 255, 255, 0.4);
     transform-origin: bottom left;
   }
 `;
