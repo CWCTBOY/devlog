@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { TagProps } from "../../../interfaces/category";
 import { transition } from "../../../styles/global/animation";
-import { TagProps } from "./category";
 
 const TagBox = styled.li<{ selected: boolean }>`
   display: inline-block;

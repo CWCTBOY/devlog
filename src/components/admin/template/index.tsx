@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { tokenCheck } from "../../../certificate/temporalCertification";
+import { tokenCheck } from "../../../hooks/certificate/temporalCertification";
+import { TagProps } from "../../../interfaces/category";
 import Forbidden from "../../common/static/Forbidden";
-import { tag, TagProps } from "../../global/category/category";
+import { tag } from "../../global/category/category";
 import Editor from "./editor";
 import Head from "./head";
+import { ArticleProps } from "../../../interfaces/article"; // * req schema
 
 const MdTemplateContainer = styled.div`
   width: 100%;
@@ -37,12 +39,6 @@ const Foot = styled.div`
     background-color: ${({ theme }) => theme.color.highlight};
   }
 `;
-
-export interface TemplateProps {
-  tags: string[] | null;
-  contents: string;
-  timestamp: number;
-}
 
 const Template = () => {
   const [tags, setTags] = useState<TagProps[]>(tag);

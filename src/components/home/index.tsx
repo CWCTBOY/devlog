@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import GridContent from "./gridContent";
 import { transition } from "../../styles/global/animation";
-import Category, { tag, TagProps } from "../global/category/category";
+import Category, { tag } from "../global/category/category";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 /*
@@ -11,24 +11,8 @@ import code1 from "../../assets/dummy/code1.png";
 import code2 from "../../assets/dummy/code2.jpeg";
 import code3 from "../../assets/dummy/code3.jpeg";
 import code4 from "../../assets/dummy/code4.jpeg";
-
-export interface ContentsProps {
-  id: number;
-  image: string;
-  title: string;
-  view: number;
-  comment: number;
-  tags: (
-    | "Algorithm"
-    | "Web"
-    | "Database"
-    | "Network"
-    | "CS"
-    | "Python"
-    | "Java"
-    | "Spring"
-  )[];
-}
+import { ContentsProps } from "../../interfaces/article";
+import { TagProps } from "../../interfaces/category";
 
 const dummyData: ContentsProps[] = [
   {

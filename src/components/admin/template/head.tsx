@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import Category, { TagProps } from "../../global/category/category";
+import { TagProps } from "../../../interfaces/category";
+import Category from "../../global/category/category";
 
 const TemplateHead = styled.div`
   width: 100%;

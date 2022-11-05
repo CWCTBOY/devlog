@@ -1,22 +1,8 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+import { TagProps } from "../../../interfaces/category";
 import { transition } from "../../../styles/global/animation";
 import Tag from "./tag";
-
-export interface TagProps {
-  id: number;
-  tag:
-    | "Algorithm"
-    | "Web"
-    | "Database"
-    | "Network"
-    | "CS"
-    | "Python"
-    | "Java"
-    | "Spring";
-  selected: boolean;
-}
 
 export const tag: TagProps[] = [
   {

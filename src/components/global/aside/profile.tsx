@@ -4,7 +4,7 @@ import { MdOutlineSchool, MdMailOutline, MdVerified } from "react-icons/md";
 import { FaGitAlt } from "react-icons/fa";
 import { useState } from "react";
 import AdminSign from "./adminSignBtn";
-import { tokenCheck } from "../../../certificate/temporalCertification";
+import { tokenCheck } from "../../../hooks/certificate/temporalCertification";
 import { transition } from "../../../styles/global/animation";
 
 const AsideProfileContainer = styled.div`

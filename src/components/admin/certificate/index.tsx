@@ -2,7 +2,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { MdVerified } from "react-icons/md";
-import { SignIn } from "../../../certificate/temporalCertification";
+import { SignIn } from "../../../hooks/certificate/temporalCertification";
 import Loading from "../../common/loading";
 import SignForm from "./form";
 
@@ -13,11 +13,6 @@ const CertificationContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-interface CertificationProps {
-  id: string;
-  pw: string;
-}
 
 const Certificated = styled.div`
   display: flex;
@@ -37,13 +32,13 @@ const Certificated = styled.div`
 const Certification = () => {
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [form, setForm] = useState<CertificationProps>({
+  const [form, setForm] = useState({
     id: "",
     pw: "",
   });
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
-    setForm((prev: CertificationProps) => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
   /**
    * @description 인증 애니메이션 구현 및 인증 로직 [임시]

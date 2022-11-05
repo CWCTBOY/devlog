@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import aside_img from "../../../assets/aside_img.jpeg";
-import { tokenCheck } from "../../../certificate/temporalCertification";
+import { tokenCheck } from "../../../hooks/certificate/temporalCertification";
 import AsideFooter from "./footer";
 import AsideProfile from "./profile";
 

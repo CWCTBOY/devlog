@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { ContentsProps } from ".";
 import { transition } from "../../styles/global/animation";
 import { MdChatBubbleOutline, MdRemoveRedEye } from "react-icons/md";
+import { ContentsProps } from "../../interfaces/article";
 
 const Content = styled.div<{ isBottom: boolean }>`
   width: 100%;

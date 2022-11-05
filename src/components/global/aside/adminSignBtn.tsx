@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   SignOut,
   tokenCheck,
-} from "../../../certificate/temporalCertification";
+} from "../../../hooks/certificate/temporalCertification";
 import { transition } from "../../../styles/global/animation";
 import { MdOutlineAdminPanelSettings, MdLogout } from "react-icons/md";
 
