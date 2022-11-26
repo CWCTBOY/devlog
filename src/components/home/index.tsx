@@ -1,117 +1,44 @@
 import styled from "@emotion/styled";
-import GridContent from "./gridContent";
 import { transition } from "../../styles/global/animation";
 import Category, { tag } from "../global/category/category";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-/*
-dummyImageProducer
-*/
-import code1 from "../../assets/dummy/code1.png";
-import code2 from "../../assets/dummy/code2.jpeg";
-import code3 from "../../assets/dummy/code3.jpeg";
-import code4 from "../../assets/dummy/code4.jpeg";
 import { ContentsProps } from "../../interfaces/article";
 import { TagProps } from "../../interfaces/category";
 import Helmet from "../global/helmet";
+import useApi from "../../hooks/api/axiosInterceptor";
+import GridContent from "./gridContent";
+/**
+ * @description dummyImage
+ */
+import code1 from "../../assets/dummy/code1.avif";
+import code2 from "../../assets/dummy/code2.avif";
+import code3 from "../../assets/dummy/code3.avif";
+import code4 from "../../assets/dummy/code4.avif";
+import code5 from "../../assets/dummy/code5.avif";
+import code6 from "../../assets/dummy/code6.avif";
+import code7 from "../../assets/dummy/code7.avif";
+import code8 from "../../assets/dummy/code8.avif";
+import code9 from "../../assets/dummy/code9.avif";
+import code10 from "../../assets/dummy/code10.avif";
+import code11 from "../../assets/dummy/code11.avif";
+import code12 from "../../assets/dummy/code12.avif";
+import code13 from "../../assets/dummy/code13.avif";
 
-const dummyData: ContentsProps[] = [
-  {
-    id: 1,
-    image: code1,
-    title: "How MVC Pattern Designed?",
-    view: 100,
-    comment: 123,
-    tags: ["Java", "Spring"],
-  },
-  {
-    id: 2,
-    image: code3,
-    title: "Spring Container Beans Technology",
-    view: 100,
-    comment: 123,
-    tags: ["Java", "Spring"],
-  },
-  {
-    id: 3,
-    image: code2,
-    title: "TCP Protocol",
-    view: 100,
-    comment: 123,
-    tags: ["Network"],
-  },
-  {
-    id: 4,
-    image: code4,
-    title: "UDP Protocol",
-    view: 100,
-    comment: 123,
-    tags: ["Network"],
-  },
-  {
-    id: 5,
-    image: code4,
-    title: "How React Works?",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
-  {
-    id: 6,
-    image: code2,
-    title: "Destructuring in JavaScript",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
-  {
-    id: 7,
-    image: code3,
-    title: "CRA vs Next.js",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
-  {
-    id: 8,
-    image: code1,
-    title: "We don't need Redux, but needs Recoil",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
-  {
-    id: 9,
-    image: code3,
-    title: "My First Spring Project",
-    view: 100,
-    comment: 123,
-    tags: ["Java", "Spring"],
-  },
-  {
-    id: 10,
-    image: code2,
-    title: "How JWT Authentication Transmits",
-    view: 100,
-    comment: 123,
-    tags: ["Web", "Java", "Spring", "Network"],
-  },
-  {
-    id: 11,
-    image: code1,
-    title: "We understand how React Router works",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
-  {
-    id: 12,
-    image: code4,
-    title: "TypeScript vs JavaScript",
-    view: 100,
-    comment: 123,
-    tags: ["Web"],
-  },
+const dummyThumbnail = [
+  code1,
+  code2,
+  code3,
+  code4,
+  code5,
+  code6,
+  code7,
+  code8,
+  code9,
+  code10,
+  code11,
+  code12,
+  code13,
 ];
 
 const HeadConatiner = styled.div<{ isClicked: boolean }>`
@@ -125,6 +52,7 @@ const MasonryContainer = styled.div<{ isClicked: boolean }>`
   column-gap: 15px;
   transition: ${transition};
   opacity: ${({ isClicked }) => (isClicked ? 0 : 1)};
+  padding: 10px 0 20px 0;
 `;
 
 const Title = styled.div<{ isClicked: boolean }>`
@@ -141,8 +69,23 @@ const Masonry = () => {
     isClicked,
   }: { isClicked: boolean; setIsClicked: (isClicked: boolean) => void } =
     useOutletContext();
+  const [contents, setContents] = useState<ContentsProps[]>();
   const [tags, setTags] = useState<TagProps[]>(tag);
   const selectedTags = tags.filter((tag) => tag.selected).map(({ tag }) => tag); // selected tags
+  useEffect(() => {
+    (async () => {
+      const { data, status } = await useApi.get<ContentsProps[]>("article/all");
+      if (status === 200) {
+        data.forEach((item) => {
+          if (!item.thumbnailUrl) {
+            item.thumbnailUrl =
+              dummyThumbnail[Math.floor(Math.random() * dummyThumbnail.length)];
+          }
+        });
+        setContents(data);
+      }
+    })();
+  }, [tags]);
   return (
     <>
       <Helmet route="Home" />
@@ -151,7 +94,7 @@ const Masonry = () => {
       </HeadConatiner>
       <Title isClicked={isClicked}>Articles</Title>
       <MasonryContainer isClicked={isClicked}>
-        {dummyData.map((content) => (
+        {contents?.map((content) => (
           <GridContent key={content.id} content={content} />
         ))}
       </MasonryContainer>

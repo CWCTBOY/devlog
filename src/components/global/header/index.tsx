@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import headerIcon from "../../../assets/developer_icon.png";
 
 const Header = styled.header<{
@@ -69,7 +69,7 @@ const Header = styled.header<{
   .progressionBar {
     width: ${({ widthPercentage }) => widthPercentage + 5}px;
     height: 5px;
-    background-color: ${({ theme }) => theme.color.white};
+    background: linear-gradient(to right, #7ffffe, #7f85fe);
     position: absolute;
     bottom: 0;
     z-index: 0;
@@ -79,32 +79,38 @@ const Header = styled.header<{
 const GlobalHeader = ({
   widthPercentage,
   isBottom,
+  title,
+  lastPathname,
 }: {
   widthPercentage: number;
   isBottom: boolean;
+  title?: string;
+  lastPathname: string;
 }) => {
-  const contentName = useParams().contentInfo?.split("_")[1];
-  const pathname = useLocation().pathname.split("/")[2];
   return (
     <Header widthPercentage={widthPercentage} isBottom={isBottom}>
-      {contentName && (
+      {title && (
         <div className="title">
-          <span>{contentName}</span>
+          <span>{title}</span>
         </div>
       )}
-      {pathname === "new-post" ? (
+      {lastPathname === "new-post" ? (
         <div className="title">
           <span>NEW POST</span>
         </div>
-      ) : pathname === "edit-post" ? (
+      ) : lastPathname === "edit-post" ? (
         <div className="title">
           <span>EDIT POST</span>
         </div>
-      ) : pathname === "certification" ? (
+      ) : lastPathname === "certification" ? (
         <div className="title">
           <span>Admin Certification</span>
         </div>
-      ) : null}
+      ) : (
+        <div className="title">
+          <span>Devlog</span>
+        </div>
+      )}
       <Link to="/">
         <div className="iconBox">
           <span className="onScrollEnd">그만내려</span>

@@ -6,11 +6,14 @@ import TagUnion from "./tag";
  */
 interface ContentsProps {
   id: number;
-  image: string;
   title: string;
-  view: number;
-  comment: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
   tags: TagUnion[];
+  view: number;
+  likeCount: number;
+  thumbnailUrl: string;
 }
 
 /**
@@ -20,6 +23,6 @@ interface ContentsProps {
 interface ArticleProps {
   tags: TagUnion[];
   content: string;
-  timestamp: number;
+  timestamp: Date;
 }
 export type { ContentsProps, ArticleProps };

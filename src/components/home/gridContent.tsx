@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { transition } from "../../styles/global/animation";
-import { MdChatBubbleOutline, MdRemoveRedEye } from "react-icons/md";
+import { MdRemoveRedEye } from "react-icons/md";
 import { ContentsProps } from "../../interfaces/article";
 
 const Content = styled.div<{ isBottom: boolean }>`
   width: 100%;
+  max-height: 370px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: ${({ theme }) => theme.borderRad.min};
+  background-color: gray;
   cursor: pointer;
   overflow: hidden;
   margin: 0 0 15px 0;
@@ -81,7 +83,7 @@ const ContentLayer = styled.div`
 `;
 
 const GridContent = ({
-  content: { id, image, title, view, comment, tags },
+  content: { id, title, thumbnailUrl, tags, view },
 }: {
   content: ContentsProps;
 }) => {
@@ -91,6 +93,7 @@ const GridContent = ({
   }: { isBottom: boolean; setIsClicked: (isClicked: boolean) => void } =
     useOutletContext();
   const navigate = useNavigate();
+
   return (
     <Content
       isBottom={isBottom}
@@ -98,27 +101,23 @@ const GridContent = ({
         setIsClicked(true);
         setTimeout(() => {
           setIsClicked(false);
-          navigate(`article/${id}_${title}`);
+          navigate(`article/${id}`);
         }, 200);
       }}
     >
-      <Thumbnail src={image} />
+      <Thumbnail src={thumbnailUrl} />
       <ContentLayer>
         <div className="head">
           <span className="title">{title}</span>
           <div className="tags">
-            {tags.map((tag) => (
+            {/* {tags.map((tag) => (
               <span key={tag} className="tag">
                 #{tag}
               </span>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="foot">
-          <div className="comment">
-            <MdChatBubbleOutline />
-            <span className="text">{comment}</span>
-          </div>
           <div className="view">
             <MdRemoveRedEye />
             <span className="text">{view}</span>
