@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { transition } from "../../styles/global/animation";
-import { MdRemoveRedEye } from "react-icons/md";
+import { MdRemoveRedEye, MdOutlineThumbUp } from "react-icons/md";
 import { ContentsProps } from "../../interfaces/article";
 
 const Content = styled.div<{ isBottom: boolean }>`
   width: 100%;
-  max-height: 370px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -25,12 +24,11 @@ const Content = styled.div<{ isBottom: boolean }>`
   &:hover {
     transform: translateY(-5px);
     box-shadow: 22px 25px 17px -12px rgba(255, 255, 255, 0.4);
-    transform-origin: bottom left;
   }
 `;
 
 const Thumbnail = styled.img`
-  width: 150%;
+  width: 100%;
 `;
 
 const ContentLayer = styled.div`
@@ -83,7 +81,7 @@ const ContentLayer = styled.div`
 `;
 
 const GridContent = ({
-  content: { id, title, thumbnailUrl, tags, view },
+  content: { id, title, thumbnailUrl, tags, view, likeCount },
 }: {
   content: ContentsProps;
 }) => {
@@ -121,6 +119,10 @@ const GridContent = ({
           <div className="view">
             <MdRemoveRedEye />
             <span className="text">{view}</span>
+          </div>
+          <div className="view">
+            <MdOutlineThumbUp />
+            <span className="text">{likeCount}</span>
           </div>
         </div>
       </ContentLayer>

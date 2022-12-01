@@ -106,11 +106,11 @@ const GlobalHeader = ({
         <div className="title">
           <span>Admin Certification</span>
         </div>
-      ) : (
+      ) : lastPathname === undefined ? (
         <div className="title">
           <span>Devlog</span>
         </div>
-      )}
+      ) : null}
       <Link to="/">
         <div className="iconBox">
           <span className="onScrollEnd">그만내려</span>
